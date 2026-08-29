@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La vida que me roza — Ángeles Franco</title>
+<meta name="description" content="La vida que me roza, poemario de Ángeles Franco. Un viaje por aquello que nos toca y permanece.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,400;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:        #F4EBDD;
+    --cream-deep:   #EAE0CD;
+    --paper:        #FBF6EE;
+    --ink:          #2B2320;
+    --ink-soft:     #5B4F47;
+    --poppy:        #A5241C;
+    --poppy-dark:   #5E1712;
+    --poppy-bright: #C93A26;
+    --rose-dust:    #D8A99B;
+    --gold:         #A5824F;
+    --line:         rgba(43,35,32,0.14);
+
+    --display: "Fraunces", "Iowan Old Style", serif;
+    --body:    "Newsreader", "Iowan Old Style", serif;
+    --utility: "Work Sans", sans-serif;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background:var(--poppy); color:var(--paper); }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 clamp(20px,5vw,64px);
+  }
+
+  /* ---------- reveal-on-scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,235,221,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px clamp(20px,5vw,64px);
+    max-width:1120px; margin:0 auto;
+  }
+  .nav-mark{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--utility); font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none;
+  }
+  .nav-mark svg{ width:20px; height:20px; flex:none; }
+  .nav-links{
+    display:flex; gap:clamp(16px,3vw,32px);
+    font-family:var(--utility); font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+  }
+  .nav-links a{ text-decoration:none; color:var(--ink-soft); position:relative; }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-4px; height:1px;
+    background:var(--poppy); transform:scaleX(0); transform-origin:left;
+    transition:transform .3s ease;
+  }
+  .nav-links a:hover::after{ transform:scaleX(1); }
+  @media (max-width:640px){ .nav-links{ display:none; } }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:clamp(40px,9vw,110px) 0 clamp(60px,10vw,120px);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items:center;
+    gap:clamp(24px,5vw,40px);
+  }
+  @media (max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-art{ order:-1; max-width:280px; margin:0 auto; }
+  }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--utility); font-size:12.5px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--poppy); margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:""; width:26px; height:1px; background:var(--poppy);
+  }
+
+  h1.title{
+    font-family:var(--display);
+    font-weight:450;
+    font-optical-sizing:auto;
+    font-size:clamp(56px, 9.5vw, 118px);
+    line-height:0.92;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  h1.title em{
+    font-style:italic; font-weight:400; color:var(--poppy);
+  }
+
+  .hero-sub{
+    margin-top:26px;
+    max-width:46ch;
+    font-family:var(--body);
+    font-style:italic;
+    font-size:clamp(18px,2vw,21px);
+    color:var(--ink-soft);
+  }
+
+  .hero-byline{
+    margin-top:30px;
+    font-family:var(--utility);
+    font-size:14px; letter-spacing:.06em;
+    color:var(--ink-soft);
+  }
+  .hero-byline strong{ color:var(--ink); font-weight:500; }
+
+  .hero-cta{
+    margin-top:40px;
+    display:inline-flex; align-items:center; gap:12px;
+    font-family:var(--utility); font-size:14px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--paper); background:var(--poppy);
+    padding:14px 26px; border-radius:2px;
+    text-decoration:none;
+    transition:background .25s ease, transform .25s ease;
+  }
+  .hero-cta:hover{ background:var(--poppy-dark); transform:translateY(-1px); }
+  .hero-cta svg{ width:14px; height:14px; transition:transform .25s ease; }
+  .hero-cta:hover svg{ transform:translateY(3px); }
+
+  .hero-art{ position:relative; }
+  .hero-art svg{ width:100%; height:auto; display:block; }
+
+  /* ---------- section shell ---------- */
+  section{ padding:clamp(70px,11vw,130px) 0; position:relative; }
+  section.alt{ background:var(--cream-deep); }
+
+  .divider{
+    display:flex; align-items:center; gap:18px;
+    max-width:1120px; margin:0 auto;
+    padding:0 clamp(20px,5vw,64px);
+  }
+  .divider .rule{ flex:1; height:1px; background:var(--line); }
+  .divider svg{ width:18px; height:18px; flex:none; opacity:.85; }
+
+  h2.h-title{
+    font-family:var(--display);
+    font-weight:450;
+    font-size:clamp(36px,5vw,58px);
+    line-height:1.02;
+    margin-bottom:26px;
+    color:var(--ink);
+  }
+
+  /* ---------- author ---------- */
+  .author-grid{
+    display:grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap:clamp(40px,6vw,80px);
+    align-items:start;
+  }
+  @media (max-width:860px){ .author-grid{ grid-template-columns:1fr; } }
+
+  .author-frame{
+    position:relative;
+    aspect-ratio: 3/4;
+    border:1px solid var(--line);
+    background:
+      radial-gradient(circle at 32% 28%, rgba(165,36,28,0.10), transparent 55%),
+      var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .author-frame svg{ width:56%; height:auto; opacity:.92; }
+  .author-frame figcaption{
+    position:absolute; bottom:16px; left:16px; right:16px;
+    font-family:var(--utility); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  .author-copy p{ margin-bottom:18px; max-width:56ch; color:var(--ink-soft); }
+  .author-copy p:first-of-type{ color:var(--ink); font-size:1.08em; }
+
+  .author-copy .note{
+    margin-top:26px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:var(--utility); font-size:12.5px; letter-spacing:.03em; color:var(--ink-soft);
+  }
+
+  /* ---------- sinopsis ---------- */
+  .syn-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:clamp(40px,6vw,90px);
+    align-items:start;
+  }
+  @media (max-width:860px){ .syn-grid{ grid-template-columns:1fr; } }
+
+  .syn-grid p{ margin-bottom:20px; color:var(--ink-soft); }
+
+  blockquote.pull{
+    font-family:var(--display);
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(24px,2.6vw,32px);
+    line-height:1.32;
+    color:var(--poppy);
+    border-left:2px solid var(--poppy);
+    padding-left:28px;
+  }
+  blockquote.pull span{
+    display:block; margin-top:16px;
+    font-family:var(--utility); font-style:normal; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);
+  }
+
+  /* ---------- book / embed ---------- */
+  .book-frame{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--paper);
+    padding:14px;
+    box-shadow: 0 30px 60px -30px rgba(43,35,32,0.35);
+  }
+  .book-frame .bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:4px 6px 14px;
+    font-family:var(--utility); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .book-frame .bar .dots{ display:flex; gap:6px; }
+  .book-frame .bar .dots span{ width:8px; height:8px; border-radius:50%; background:var(--rose-dust); display:block; }
+
+  .pdf-embed{
+    width:100%;
+    height:min(78vh, 820px);
+    border:none;
+    background:#fff;
+    display:block;
+  }
+  .pdf-fallback{
+    padding:60px 20px; text-align:center; font-family:var(--utility); font-size:14px; color:var(--ink-soft);
+  }
+
+  .book-actions{
+    margin-top:26px;
+    display:flex; flex-wrap:wrap; gap:16px; align-items:center;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--utility); font-size:14px; letter-spacing:.05em; text-transform:uppercase;
+    text-decoration:none; padding:13px 24px; border-radius:2px;
+    transition:background .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .btn.solid{ background:var(--ink); color:var(--paper); }
+  .btn.solid:hover{ background:var(--poppy); }
+  .btn.outline{ border:1px solid var(--ink); color:var(--ink); }
+  .btn.outline:hover{ border-color:var(--poppy); color:var(--poppy); }
+  .btn svg{ width:14px; height:14px; }
+
+  /* ---------- flipbook (interactive reader) ---------- */
+  .flip-stage{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    padding:clamp(10px,3vw,30px) 56px;
+    min-height:340px;
+  }
+  #flipbook{
+    box-shadow: 0 40px 80px -30px rgba(43,35,32,0.45);
+  }
+  #flipbook .page{ background:#fff; }
+  #flipbook .page img{ width:100%; height:100%; display:block; object-fit:cover; }
+
+  .fb-nav{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:44px; height:44px; border-radius:50%;
+    border:1px solid var(--line); background:var(--paper);
+    color:var(--ink); font-family:var(--display); font-size:22px; line-height:1;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+    z-index:5;
+  }
+  .fb-nav:hover{ background:var(--poppy); color:var(--paper); border-color:var(--poppy); }
+  .fb-nav:disabled{ opacity:.3; cursor:default; }
+  .fb-nav:disabled:hover{ background:var(--paper); color:var(--ink); border-color:var(--line); }
+  .fb-nav.prev{ left:0; }
+  .fb-nav.next{ right:0; }
+  @media (max-width:600px){
+    .flip-stage{ padding:10px 44px; }
+    .fb-nav{ width:36px; height:36px; font-size:18px; }
+  }
+
+  .fb-bar{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:520px; margin:18px auto 0;
+    font-family:var(--utility); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .fb-progress-wrap{
+    max-width:520px; margin:0 auto; height:2px; background:var(--line); position:relative; overflow:hidden;
+  }
+  .fb-progress-bar{
+    position:absolute; left:0; top:0; bottom:0; width:0%;
+    background:var(--poppy); transition:width .2s ease;
+  }
+  .fb-loading{
+    text-align:center; font-family:var(--utility); font-size:13px; letter-spacing:.05em;
+    color:var(--ink-soft); margin-bottom:14px;
+  }
+  .flip-stage.is-hidden, .fb-bar.is-hidden, .fb-progress-wrap.is-hidden, .fb-loading.is-hidden{ display:none; }
+
+  details.fb-fallback-toggle{
+    margin-top:30px; font-family:var(--utility); font-size:13px; color:var(--ink-soft);
+  }
+  details.fb-fallback-toggle summary{ cursor:pointer; color:var(--ink); }
+  details.fb-fallback-toggle .book-frame{ margin-top:18px; }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:50px 0 40px;
+    border-top:1px solid var(--line);
+  }
+  .foot-inner{
+    display:flex; flex-wrap:wrap; gap:16px;
+    align-items:center; justify-content:space-between;
+    font-family:var(--utility); font-size:12.5px; letter-spacing:.05em;
+    color:var(--ink-soft);
+  }
+  .foot-inner svg{ width:16px; height:16px; vertical-align:-3px; margin-right:8px; }
+
+  /* poppy motif rotation helper */
+  .poppy-spin{ transform-origin:200px 200px; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="#top">
+      <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="6" fill="var(--poppy-dark)"/><path d="M20 20 C12 14 10 6 16 3 C21 1 26 5 24 12 C22 17 20 20 20 20Z" fill="var(--poppy)"/><path d="M20 20 C28 14 30 6 24 3 C19 1 14 5 16 12 C18 17 20 20 20 20Z" fill="var(--poppy-bright)"/></svg>
+      La vida que me roza
+    </a>
+    <nav class="nav-links">
+      <a href="#autora">La autora</a>
+      <a href="#sinopsis">Sinopsis</a>
+      <a href="#libro">El poemario</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Poesía · Ángeles Franco</span>
+        <h1 class="title">La vida<br>que me <em>roza</em></h1>
+        <p class="hero-sub">Un viaje por aquello que nos toca y permanece: el encuentro, el deseo, la ausencia y la vida que insiste en mirarse de nuevo.</p>
+        <p class="hero-byline">Poemario de <strong>Ángeles Franco</strong> — LB Editorial</p>
+        <a class="hero-cta" href="#libro">
+          Leer el poemario
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-art">
+        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="rough" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="7" result="noise"/>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="9"/>
+            </filter>
+            <linearGradient id="stem" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#7C8A52"/>
+              <stop offset="100%" stop-color="#5B6A3B"/>
+            </linearGradient>
+          </defs>
+
+          <path d="M200 250 C200 320 194 370 186 430" stroke="url(#stem)" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+          <g filter="url(#rough)">
+            <g class="poppy-spin">
+              <path d="M200,200 C168,150 150,90 178,52 C198,26 232,30 238,64 C244,100 220,160 200,200 Z" fill="var(--poppy)" opacity="0.96"/>
+            </g>
+            <g class="poppy-spin" transform="rotate(72 200 200)">
+              <path d="M200,200 C168,150 150,90 178,52 C198,26 232,30 238,64 C244,100 220,160 200,200 Z" fill="var(--poppy-bright)" opacity="0.94"/>
+            </g>
+            <g class="poppy-spin" transform="rotate(144 200 200)">
+              <path d="M200,200 C168,150 150,90 178,52 C198,26 232,30 238,64 C244,100 220,160 200,200 Z" fill="var(--poppy)" opacity="0.96"/>
+            </g>
+            <g class="poppy-spin" transform="rotate(216 200 200)">
+              <path d="M200,200 C168,150 150,90 178,52 C198,26 232,30 238,64 C244,100 220,160 200,200 Z" fill="var(--poppy-bright)" opacity="0.92"/>
+            </g>
+            <g class="poppy-spin" transform="rotate(288 200 200)">
+              <path d="M200,200 C168,150 150,90 178,52 C198,26 232,30 238,64 C244,100 220,160 200,200 Z" fill="var(--poppy)" opacity="0.96"/>
+            </g>
+          </g>
+
+          <circle cx="200" cy="200" r="20" fill="var(--poppy-dark)"/>
+          <g stroke="var(--ink)" stroke-width="2" stroke-linecap="round" opacity="0.75">
+            <line x1="200" y1="200" x2="186" y2="184"/>
+            <line x1="200" y1="200" x2="214" y2="184"/>
+            <line x1="200" y1="200" x2="182" y2="202"/>
+            <line x1="200" y1="200" x2="218" y2="202"/>
+            <line x1="200" y1="200" x2="192" y2="216"/>
+            <line x1="200" y1="200" x2="208" y2="216"/>
+          </g>
+
+          <path d="M188 320 C160 316 140 330 128 356" stroke="#6E7D45" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+          <path d="M192 360 C216 354 236 366 250 388" stroke="#6E7D45" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= AUTORA ================= -->
+  <section id="autora">
+    <div class="wrap author-grid reveal">
+      <figure class="author-frame">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100,100 C80,72 72,40 92,22 C104,12 122,16 124,36 C126,58 112,84 100,100 Z" fill="var(--poppy)"/>
+          <path d="M100,100 C120,72 128,40 108,22 C96,12 78,16 76,36 C74,58 88,84 100,100 Z" fill="var(--poppy-bright)"/>
+          <circle cx="100" cy="100" r="10" fill="var(--poppy-dark)"/>
+          <path d="M100 110 C98 140 95 165 90 190" stroke="#6E7D45" stroke-width="2.5" fill="none"/>
+        </svg>
+        <figcaption>Ángeles Franco · autora</figcaption>
+      </figure>
+
+      <div class="author-copy">
+        <span class="eyebrow">La autora</span>
+        <h2 class="h-title">Ángeles Franco</h2>
+        <p>Escribe desde la certeza de que las cosas pequeñas —unas manos, un café, una orilla— son, en realidad, donde cabe una vida entera. Su poesía nace de la observación paciente: de la piel, del tiempo, del cuerpo que ama y que también cambia.</p>
+        <p>En <em>La vida que me roza</em> recorre los territorios del encuentro y del deseo, pero también la fragilidad y la enfermedad, esos instantes en que la vida obliga a mirarse de nuevo. Una voz cercana, sensual y luminosa que convierte lo cotidiano en un lugar donde quedarse.</p>
+        <p class="note">Este espacio está pensado para crecer contigo — añade aquí la fotografía y la historia que quieras compartir sobre ti.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= SINOPSIS ================= -->
+  <section id="sinopsis" class="alt">
+    <div class="wrap reveal">
+      <span class="eyebrow">Sinopsis</span>
+      <h2 class="h-title">Aquello que nos toca<br>y permanece</h2>
+
+      <div class="syn-grid" style="margin-top:36px;">
+        <div>
+          <p>Ángeles Franco recorre en estas páginas los territorios del encuentro y del deseo, la intimidad de la piel y la palabra, pero también la ausencia, la fragilidad, la enfermedad y esos momentos en los que la vida obliga a mirarse de nuevo.</p>
+          <p>A medida que avanza el poemario, el amor deja de ser únicamente el vínculo entre dos personas para ensancharse hacia la amistad, la naturaleza, el mar, la gratitud y la propia existencia.</p>
+          <p>Con una voz cercana, sensual y luminosa, la autora convierte gestos cotidianos en lugares donde cabe una vida entera.</p>
+        </div>
+        <blockquote class="pull">
+          Quizá vivir no consista en atravesar intactos el tiempo, sino en conservar la capacidad de sentir, de amar y de dejarnos rozar por aquello que nos transforma.
+          <span>Ángeles Franco</span>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= LIBRO / EMBED ================= -->
+  <section id="libro">
+    <div class="wrap reveal">
+      <span class="eyebrow">El poemario</span>
+      <h2 class="h-title">Léelo aquí, entero</h2>
+      <p style="max-width:56ch; color:var(--ink-soft); margin-bottom:36px;">Pasa las páginas como si tuvieras el libro en las manos.</p>
+
+      <p id="fbLoading" class="fb-loading">Preparando el libro…</p>
+      <div id="fbProgressWrap" class="fb-progress-wrap"><div id="fbProgressBar" class="fb-progress-bar"></div></div>
+
+      <div id="flipStage" class="flip-stage is-hidden">
+        <button id="fbPrev" class="fb-nav prev" aria-label="Página anterior">‹</button>
+        <div id="flipbook"></div>
+        <button id="fbNext" class="fb-nav next" aria-label="Página siguiente">›</button>
+      </div>
+      <div id="fbBar" class="fb-bar is-hidden">
+        <span>Ángeles Franco</span>
+        <span id="fbCounter">— / —</span>
+      </div>
+
+      <div class="book-actions" style="margin-top:34px;">
+        <a class="btn solid" href="La-vida-que-me-roza.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          Descargar PDF
+        </a>
+      </div>
+
+      <details class="fb-fallback-toggle" id="fbFallbackDetails" style="display:none;">
+        <summary>¿No ves el libro? Ábrelo como PDF clásico</summary>
+        <div class="book-frame">
+          <div class="bar">
+            <span>La vida que me roza — Ángeles Franco</span>
+            <span class="dots"><span></span><span></span><span></span></span>
+          </div>
+          <object class="pdf-embed" data="La-vida-que-me-roza.pdf" type="application/pdf">
+            <p class="pdf-fallback">
+              Tu navegador no puede mostrar el PDF aquí.<br>
+              <a class="btn outline" style="margin-top:14px;" href="La-vida-que-me-roza.pdf" target="_blank" rel="noopener">Abrir el PDF</a>
+            </p>
+          </object>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-inner">
+      <span>
+        <svg viewBox="0 0 40 40" fill="none" style="display:inline-block;"><circle cx="20" cy="20" r="6" fill="var(--poppy-dark)"/><path d="M20 20 C12 14 10 6 16 3 C21 1 26 5 24 12 C22 17 20 20 20 20Z" fill="var(--poppy)"/></svg>
+        Ángeles Franco — <em>La vida que me roza</em> · LB Editorial
+      </span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+<!-- Libraries for the interactive page-flip reader -->
+<link rel="stylesheet" href="https://unpkg.com/page-flip@2.0.7/dist/css/page-flip.css" onerror="this.remove()">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" onerror="window.__pdfjsFailed=true"></script>
+<script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js" onerror="window.__pageflipFailed=true"></script>
+
+<script>
+(function(){
+  const PDF_URL = 'La-vida-que-me-roza.pdf';
+  const PAGE_RATIO = 595.276 / 419.528; // height / width of the original page
+
+  const loadingEl   = document.getElementById('fbLoading');
+  const progWrap    = document.getElementById('fbProgressWrap');
+  const progBar     = document.getElementById('fbProgressBar');
+  const stage       = document.getElementById('flipStage');
+  const bar         = document.getElementById('fbBar');
+  const counterEl   = document.getElementById('fbCounter');
+  const prevBtn     = document.getElementById('fbPrev');
+  const nextBtn     = document.getElementById('fbNext');
+  const flipbookEl  = document.getElementById('flipbook');
+  const fallbackBox = document.getElementById('fbFallbackDetails');
+
+  function showFallback(){
+    loadingEl.classList.add('is-hidden');
+    progWrap.classList.add('is-hidden');
+    stage.classList.add('is-hidden');
+    bar.classList.add('is-hidden');
+    if(fallbackBox) fallbackBox.style.display = 'block';
+  }
+
+  async function buildFlipbook(){
+    if(typeof pdfjsLib === 'undefined' || typeof St === 'undefined'){
+      throw new Error('Librerías no disponibles (sin conexión al CDN).');
+    }
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    const doc = await pdfjsLib.getDocument(PDF_URL).promise;
+    const total = doc.numPages;
+    const images = [];
+
+    for(let i = 1; i <= total; i++){
+      const page = await doc.getPage(i);
+      const viewport = page.getViewport({ scale: 2.2 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+      images.push(canvas.toDataURL('image/jpeg', 0.86));
+      progBar.style.width = Math.round((i / total) * 100) + '%';
+      loadingEl.textContent = 'Preparando el libro… ' + Math.round((i / total) * 100) + '%';
+    }
+
+    const baseWidth = 480;
+    const pageFlip = new St.PageFlip(flipbookEl, {
+      width: baseWidth,
+      height: Math.round(baseWidth * PAGE_RATIO),
+      size: 'stretch',
+      minWidth: 260,
+      maxWidth: 700,
+      minHeight: Math.round(260 * PAGE_RATIO),
+      maxHeight: Math.round(700 * PAGE_RATIO),
+      showCover: true,
+      maxShadowOpacity: 0.5,
+      mobileScrollSupport: false,
+      usePortrait: true
+    });
+
+    pageFlip.loadFromImages(images);
+
+    function updateCounter(){
+      counterEl.textContent = (pageFlip.getCurrentPageIndex() + 1) + ' / ' + total;
+      prevBtn.disabled = pageFlip.getCurrentPageIndex() === 0;
+      nextBtn.disabled = pageFlip.getCurrentPageIndex() >= total - 1;
+    }
+    pageFlip.on('flip', updateCounter);
+    updateCounter();
+
+    prevBtn.addEventListener('click', () => pageFlip.flipPrev());
+    nextBtn.addEventListener('click', () => pageFlip.flipNext());
+    document.addEventListener('keydown', (e) => {
+      if(!stage.classList.contains('is-hidden')){
+        if(e.key === 'ArrowLeft') pageFlip.flipPrev();
+        if(e.key === 'ArrowRight') pageFlip.flipNext();
+      }
+    });
+
+    loadingEl.classList.add('is-hidden');
+    progWrap.classList.add('is-hidden');
+    stage.classList.remove('is-hidden');
+    bar.classList.remove('is-hidden');
+  }
+
+  window.addEventListener('load', () => {
+    buildFlipbook().catch((err) => {
+      console.error('No se pudo montar el libro interactivo:', err);
+      showFallback();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
