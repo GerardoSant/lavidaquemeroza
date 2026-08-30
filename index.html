@@ -78,7 +78,7 @@
   }
   .nav-mark svg{ width:20px; height:20px; flex:none; }
   .nav-links{
-    display:flex; gap:clamp(16px,3vw,32px);
+    display:flex; gap:clamp(14px,2.6vw,26px);
     font-family:var(--utility); font-size:13px; letter-spacing:.08em; text-transform:uppercase;
   }
   .nav-links a{ text-decoration:none; color:var(--ink-soft); position:relative; }
@@ -88,7 +88,7 @@
     transition:transform .3s ease;
   }
   .nav-links a:hover::after{ transform:scaleX(1); }
-  @media (max-width:640px){ .nav-links{ display:none; } }
+  @media (max-width:760px){ .nav-links{ display:none; } }
 
   /* ---------- hero ---------- */
   .hero{
@@ -160,7 +160,30 @@
   .hero-cta:hover svg{ transform:translateY(3px); }
 
   .hero-art{ position:relative; }
-  .hero-art svg{ width:100%; height:auto; display:block; }
+
+  /* ---------- hero cover (portada.jpg) ---------- */
+  .cover-frame{
+    position:relative;
+    max-width:340px;
+    margin:0 auto;
+  }
+  .cover-frame::before{
+    content:"";
+    position:absolute;
+    top:-34px; right:-34px;
+    width:220px; height:220px;
+    background:radial-gradient(circle, var(--poppy) 0%, transparent 70%);
+    opacity:.32;
+    filter:blur(4px);
+    z-index:0;
+  }
+  .cover-img{
+    position:relative; z-index:1;
+    display:block; width:100%;
+    border:1px solid var(--line);
+    box-shadow: 0 40px 80px -30px rgba(43,35,32,0.45);
+    transform:rotate(-2deg);
+  }
 
   /* ---------- section shell ---------- */
   section{ padding:clamp(70px,11vw,130px) 0; position:relative; }
@@ -183,6 +206,13 @@
     color:var(--ink);
   }
 
+  .note{
+    font-family:var(--utility); font-size:12.5px; letter-spacing:.03em; color:var(--ink-soft);
+  }
+  .note.bordered{
+    margin-top:26px; padding-top:18px; border-top:1px solid var(--line);
+  }
+
   /* ---------- author ---------- */
   .author-grid{
     display:grid;
@@ -202,20 +232,19 @@
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
   }
-  .author-frame svg{ width:56%; height:auto; opacity:.92; }
+  .author-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
   .author-frame figcaption{
     position:absolute; bottom:16px; left:16px; right:16px;
     font-family:var(--utility); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
-    color:var(--ink-soft);
+    color:var(--paper);
+    text-shadow: 0 1px 6px rgba(0,0,0,.55);
   }
 
   .author-copy p{ margin-bottom:18px; max-width:56ch; color:var(--ink-soft); }
   .author-copy p:first-of-type{ color:var(--ink); font-size:1.08em; }
 
-  .author-copy .note{
-    margin-top:26px; padding-top:18px; border-top:1px solid var(--line);
-    font-family:var(--utility); font-size:12.5px; letter-spacing:.03em; color:var(--ink-soft);
-  }
+  .author-copy .note{ margin-top:26px; padding-top:18px; border-top:1px solid var(--line); }
+  .author-copy .note a{ color:var(--poppy); text-decoration:underline; text-underline-offset:3px; }
 
   /* ---------- sinopsis ---------- */
   .syn-grid{
@@ -243,6 +272,105 @@
     font-family:var(--utility); font-style:normal; font-size:12.5px;
     letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);
   }
+
+  /* ---------- por qué leerlo ---------- */
+  .reasons-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:clamp(30px,4.5vw,54px) clamp(30px,5vw,64px);
+  }
+  @media (max-width:700px){ .reasons-grid{ grid-template-columns:1fr; } }
+
+  .reason-icon{ width:30px; height:30px; color:var(--poppy); margin-bottom:16px; display:block; }
+  .reason-card h3{
+    font-family:var(--display); font-weight:500; font-size:1.32em;
+    margin-bottom:10px; color:var(--ink);
+  }
+  .reason-card p{ color:var(--ink-soft); max-width:46ch; }
+
+  /* ---------- trailer (slim band) ---------- */
+  .trailer-section{ padding:clamp(48px,7vw,72px) 0 !important; }
+  .trailer-inner{
+    display:flex; flex-wrap:wrap; gap:24px;
+    align-items:center; justify-content:space-between;
+  }
+  .trailer-inner .hero-cta{ margin-top:0; flex:none; }
+
+  /* ---------- reseñas placeholder ---------- */
+  .review-placeholder{
+    border:1px dashed var(--line);
+    padding:clamp(28px,4vw,46px);
+    max-width:64ch;
+  }
+  .review-placeholder p{ color:var(--ink-soft); }
+  .review-placeholder p:first-child{
+    font-family:var(--display); font-style:italic; font-size:1.18em; color:var(--ink); margin-bottom:14px;
+  }
+
+  /* ---------- dónde comprar / redes ---------- */
+  .buy-grid, .social-row{ display:flex; flex-wrap:wrap; gap:16px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--utility); font-size:14px; letter-spacing:.05em; text-transform:uppercase;
+    text-decoration:none; padding:13px 24px; border-radius:2px;
+    transition:background .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .btn.solid{ background:var(--ink); color:var(--paper); }
+  .btn.solid:hover{ background:var(--poppy); }
+  .btn.outline{ border:1px solid var(--ink); color:var(--ink); }
+  .btn.outline:hover{ border-color:var(--poppy); color:var(--poppy); }
+  .btn svg{ width:14px; height:14px; }
+  .buy-grid .btn{ min-width:150px; justify-content:center; }
+
+  /* ---------- exclusivo: marcapáginas + carrusel ---------- */
+  .exclusive-grid{
+    display:grid;
+    grid-template-columns: 0.78fr 1.22fr;
+    gap:clamp(40px,6vw,72px);
+    align-items:start;
+  }
+  @media (max-width:860px){ .exclusive-grid{ grid-template-columns:1fr; } }
+
+  .bookmark-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:22px;
+    max-width:210px;
+    box-shadow: 0 24px 54px -30px rgba(43,35,32,0.4);
+  }
+  .bookmark-card svg{ width:100%; height:auto; display:block; }
+
+  .carousel-intro{ color:var(--ink-soft); max-width:52ch; margin-bottom:26px; }
+
+  .carousel-wrap{ position:relative; }
+  .carousel{
+    display:flex; gap:20px;
+    overflow-x:auto; scroll-snap-type:x mandatory;
+    scrollbar-width:none; padding-bottom:4px;
+  }
+  .carousel::-webkit-scrollbar{ display:none; }
+  .carousel-slide{ flex:0 0 min(300px, 78%); scroll-snap-align:start; }
+  .carousel-slide img{
+    width:100%; aspect-ratio: 4/5; object-fit:cover;
+    border:1px solid var(--line); display:block;
+  }
+  .carousel-slide figcaption{
+    margin-top:12px; font-family:var(--utility); font-size:13px;
+    line-height:1.5; color:var(--ink-soft);
+  }
+  .carousel-nav{
+    position:absolute; top:38%; transform:translateY(-50%);
+    width:40px; height:40px; border-radius:50%;
+    border:1px solid var(--line); background:var(--paper);
+    color:var(--ink); font-family:var(--display); font-size:20px; line-height:1;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+    z-index:5;
+  }
+  .carousel-nav:hover{ background:var(--poppy); color:var(--paper); border-color:var(--poppy); }
+  .carousel-nav.prev{ left:-14px; }
+  .carousel-nav.next{ right:-14px; }
+  @media (max-width:680px){ .carousel-nav{ display:none; } }
 
   /* ---------- book / embed ---------- */
   .book-frame{
@@ -276,17 +404,6 @@
     margin-top:26px;
     display:flex; flex-wrap:wrap; gap:16px; align-items:center;
   }
-  .btn{
-    display:inline-flex; align-items:center; gap:10px;
-    font-family:var(--utility); font-size:14px; letter-spacing:.05em; text-transform:uppercase;
-    text-decoration:none; padding:13px 24px; border-radius:2px;
-    transition:background .25s ease, color .25s ease, border-color .25s ease;
-  }
-  .btn.solid{ background:var(--ink); color:var(--paper); }
-  .btn.solid:hover{ background:var(--poppy); }
-  .btn.outline{ border:1px solid var(--ink); color:var(--ink); }
-  .btn.outline:hover{ border-color:var(--poppy); color:var(--poppy); }
-  .btn svg{ width:14px; height:14px; }
 
   /* ---------- flipbook (interactive reader) ---------- */
   .flip-stage{
@@ -371,16 +488,18 @@
       La vida que me roza
     </a>
     <nav class="nav-links">
-      <a href="#autora">La autora</a>
       <a href="#sinopsis">Sinopsis</a>
+      <a href="#por-que-leerlo">Por qué leerlo</a>
       <a href="#libro">El poemario</a>
+      <a href="#autora">La autora</a>
+      <a href="#comprar">Comprar</a>
     </nav>
   </div>
 </header>
 
 <main id="top">
 
-  <!-- ================= HERO ================= -->
+  <!-- ================= HERO / PORTADA ================= -->
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
@@ -395,51 +514,9 @@
       </div>
 
       <div class="hero-art">
-        <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <filter id="rough" x="-20%" y="-20%" width="140%" height="140%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.012 0.02" numOctaves="2" seed="7" result="noise"/>
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="9"/>
-            </filter>
-            <linearGradient id="stem" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#7C8A52"/>
-              <stop offset="100%" stop-color="#5B6A3B"/>
-            </linearGradient>
-          </defs>
-
-          <path d="M200 250 C200 320 194 370 186 430" stroke="url(#stem)" stroke-width="4" fill="none" stroke-linecap="round"/>
-
-          <g filter="url(#rough)">
-            <g class="poppy-spin">
-              <path d="M200,200 C168,150 150,90 178,52 C198,26 232,30 238,64 C244,100 220,160 200,200 Z" fill="var(--poppy)" opacity="0.96"/>
-            </g>
-            <g class="poppy-spin" transform="rotate(72 200 200)">
-              <path d="M200,200 C168,150 150,90 178,52 C198,26 232,30 238,64 C244,100 220,160 200,200 Z" fill="var(--poppy-bright)" opacity="0.94"/>
-            </g>
-            <g class="poppy-spin" transform="rotate(144 200 200)">
-              <path d="M200,200 C168,150 150,90 178,52 C198,26 232,30 238,64 C244,100 220,160 200,200 Z" fill="var(--poppy)" opacity="0.96"/>
-            </g>
-            <g class="poppy-spin" transform="rotate(216 200 200)">
-              <path d="M200,200 C168,150 150,90 178,52 C198,26 232,30 238,64 C244,100 220,160 200,200 Z" fill="var(--poppy-bright)" opacity="0.92"/>
-            </g>
-            <g class="poppy-spin" transform="rotate(288 200 200)">
-              <path d="M200,200 C168,150 150,90 178,52 C198,26 232,30 238,64 C244,100 220,160 200,200 Z" fill="var(--poppy)" opacity="0.96"/>
-            </g>
-          </g>
-
-          <circle cx="200" cy="200" r="20" fill="var(--poppy-dark)"/>
-          <g stroke="var(--ink)" stroke-width="2" stroke-linecap="round" opacity="0.75">
-            <line x1="200" y1="200" x2="186" y2="184"/>
-            <line x1="200" y1="200" x2="214" y2="184"/>
-            <line x1="200" y1="200" x2="182" y2="202"/>
-            <line x1="200" y1="200" x2="218" y2="202"/>
-            <line x1="200" y1="200" x2="192" y2="216"/>
-            <line x1="200" y1="200" x2="208" y2="216"/>
-          </g>
-
-          <path d="M188 320 C160 316 140 330 128 356" stroke="#6E7D45" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
-          <path d="M192 360 C216 354 236 366 250 388" stroke="#6E7D45" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
-        </svg>
+        <div class="cover-frame">
+          <img class="cover-img" src="assets/images/portada.jpg" alt="Portada de La vida que me roza, de Ángeles Franco: una amapola sobre fondo claro">
+        </div>
       </div>
     </div>
   </section>
@@ -450,36 +527,7 @@
     <div class="rule"></div>
   </div>
 
-  <!-- ================= AUTORA ================= -->
-  <section id="autora">
-    <div class="wrap author-grid reveal">
-      <figure class="author-frame">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <path d="M100,100 C80,72 72,40 92,22 C104,12 122,16 124,36 C126,58 112,84 100,100 Z" fill="var(--poppy)"/>
-          <path d="M100,100 C120,72 128,40 108,22 C96,12 78,16 76,36 C74,58 88,84 100,100 Z" fill="var(--poppy-bright)"/>
-          <circle cx="100" cy="100" r="10" fill="var(--poppy-dark)"/>
-          <path d="M100 110 C98 140 95 165 90 190" stroke="#6E7D45" stroke-width="2.5" fill="none"/>
-        </svg>
-        <figcaption>Ángeles Franco · autora</figcaption>
-      </figure>
-
-      <div class="author-copy">
-        <span class="eyebrow">La autora</span>
-        <h2 class="h-title">Ángeles Franco</h2>
-        <p>Escribe desde la certeza de que las cosas pequeñas —unas manos, un café, una orilla— son, en realidad, donde cabe una vida entera. Su poesía nace de la observación paciente: de la piel, del tiempo, del cuerpo que ama y que también cambia.</p>
-        <p>En <em>La vida que me roza</em> recorre los territorios del encuentro y del deseo, pero también la fragilidad y la enfermedad, esos instantes en que la vida obliga a mirarse de nuevo. Una voz cercana, sensual y luminosa que convierte lo cotidiano en un lugar donde quedarse.</p>
-        <p class="note">Este espacio está pensado para crecer contigo — añade aquí la fotografía y la historia que quieras compartir sobre ti.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider">
-    <div class="rule"></div>
-    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
-    <div class="rule"></div>
-  </div>
-
-  <!-- ================= SINOPSIS ================= -->
+  <!-- ================= PRESENTACIÓN / SINOPSIS ================= -->
   <section id="sinopsis" class="alt">
     <div class="wrap reveal">
       <span class="eyebrow">Sinopsis</span>
@@ -505,7 +553,69 @@
     <div class="rule"></div>
   </div>
 
-  <!-- ================= LIBRO / EMBED ================= -->
+  <!-- ================= POR QUÉ LEERLO ================= -->
+  <section id="por-que-leerlo">
+    <div class="wrap reveal">
+      <span class="eyebrow">Razones para empezar</span>
+      <h2 class="h-title">¿Por qué leerlo?</h2>
+      <p style="max-width:56ch; color:var(--ink-soft); margin-bottom:44px;">Cuatro motivos, entre muchos, para dejarte rozar por estos poemas.</p>
+
+      <div class="reasons-grid">
+        <div class="reason-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.2-4.4-9.6-9.1C.8 7 2.1 3 5.6 3c2.5 0 4.6 2 6.4 4 1.8-2 3.9-4 6.4-4 3.5 0 4.8 4 3.2 7.9C19.2 15.6 12 20 12 20z"/></svg>
+          <h3>Una voz que no esconde nada</h3>
+          <p>Franco escribe desde muy cerca, sin rehuir la piel, el deseo ni la pérdida. Cada poema se lee como una confidencia entre dos personas.</p>
+        </div>
+
+        <div class="reason-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2M2 14.5c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2M2 21c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/></svg>
+          <h3>Del amor a todo lo que amamos</h3>
+          <p>El vínculo entre dos personas se abre paso hacia la amistad, la naturaleza y el mar, ensanchando lo que entendemos por amor.</p>
+        </div>
+
+        <div class="reason-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.2c-1.9-1.5-4.4-2.1-7.4-2.1v14.6c3 0 5.5.6 7.4 2.1 1.9-1.5 4.4-2.1 7.4-2.1V4.1c-3 0-5.5.6-7.4 2.1z"/><path d="M12 6.2v14.6"/></svg>
+          <h3>Lecturas breves, para cualquier momento</h3>
+          <p>Poemas pensados para leerse de uno en uno: entre una taza de café, un trayecto o una pausa del día.</p>
+        </div>
+
+        <div class="reason-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg>
+          <h3>Un espejo para lo que nos transforma</h3>
+          <p>La fragilidad y la enfermedad aparecen sin dramatismo, como parte natural de aprender a mirarse de nuevo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= TRÁILER ================= -->
+  <section id="trailer" class="alt trailer-section">
+    <div class="wrap trailer-inner reveal">
+      <div>
+        <span class="eyebrow">Adelanto</span>
+        <h2 class="h-title" style="font-size:clamp(28px,3.6vw,42px); margin-bottom:12px;">Muy pronto, en vídeo</h2>
+        <p style="color:var(--ink-soft); max-width:50ch;">Estamos preparando un pequeño tráiler del poemario. Mientras tanto, síguenos en redes para no perdértelo.</p>
+      </div>
+      <a class="hero-cta" href="#sociales">
+        Ir a redes sociales
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= LIBRO / FRAGMENTO ================= -->
   <section id="libro">
     <div class="wrap reveal">
       <span class="eyebrow">El poemario</span>
@@ -526,7 +636,7 @@
       </div>
 
       <div class="book-actions" style="margin-top:34px;">
-        <a class="btn solid" href="-que-me-roza.pdf" download>
+        <a class="btn solid" href="La-vida-que-me-roza.pdf" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
           Descargar PDF
         </a>
@@ -539,14 +649,173 @@
             <span>La vida que me roza — Ángeles Franco</span>
             <span class="dots"><span></span><span></span><span></span></span>
           </div>
-          <object class="pdf-embed" data="-que-me-roza.pdf" type="application/pdf">
+          <object class="pdf-embed" data="La-vida-que-me-roza.pdf" type="application/pdf">
             <p class="pdf-fallback">
               Tu navegador no puede mostrar el PDF aquí.<br>
-              <a class="btn outline" style="margin-top:14px;" href="-que-me-roza.pdf" target="_blank" rel="noopener">Abrir el PDF</a>
+              <a class="btn outline" style="margin-top:14px;" href="La-vida-que-me-roza.pdf" target="_blank" rel="noopener">Abrir el PDF</a>
             </p>
           </object>
         </div>
       </details>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= RESEÑAS ================= -->
+  <section id="resenas" class="alt">
+    <div class="wrap reveal">
+      <span class="eyebrow">Voces</span>
+      <h2 class="h-title">Lo que dicen del libro</h2>
+
+      <div class="review-placeholder">
+        <p>Aquí aparecerán las reseñas de medios, blogs literarios o autores que quieran compartir su lectura de <em>La vida que me roza</em>.</p>
+        <p>De momento, este espacio espera sus primeras palabras — añade aquí citas reales cuando las tengas, con el permiso de quien las escribió.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= SOBRE LA AUTORA ================= -->
+  <section id="autora">
+    <div class="wrap author-grid reveal">
+      <figure class="author-frame">
+        <img src="assets/images/autora.jpeg" alt="Retrato de Ángeles Franco, autora del poemario, al aire libre entre olivos">
+        <figcaption>Ángeles Franco · autora</figcaption>
+      </figure>
+
+      <div class="author-copy">
+        <span class="eyebrow">La autora</span>
+        <h2 class="h-title">Ángeles Franco</h2>
+        <p>Escribe desde la certeza de que las cosas pequeñas —unas manos, un café, una orilla— son, en realidad, donde cabe una vida entera. Su poesía nace de la observación paciente: de la piel, del tiempo, del cuerpo que ama y que también cambia.</p>
+        <p>En <em>La vida que me roza</em> recorre los territorios del encuentro y del deseo, pero también la fragilidad y la enfermedad, esos instantes en que la vida obliga a mirarse de nuevo. Una voz cercana, sensual y luminosa que convierte lo cotidiano en un lugar donde quedarse.</p>
+        <p class="note">Puedes ampliar esta biografía cuando quieras. Sigue el proceso del libro en <a href="#sociales">redes sociales</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= DÓNDE COMPRARLO ================= -->
+  <section id="comprar" class="alt">
+    <div class="wrap reveal">
+      <span class="eyebrow">Consíguelo</span>
+      <h2 class="h-title">Dónde comprarlo</h2>
+      <p style="max-width:52ch; color:var(--ink-soft); margin-bottom:34px;">Elige el formato que prefieras.</p>
+
+      <div class="buy-grid">
+        <!-- Sustituye los "#" por los enlaces reales de cada tienda/formato -->
+        <a class="btn outline" href="#">Libro físico</a>
+        <a class="btn outline" href="#">Ebook</a>
+        <a class="btn outline" href="#">Audiolibro</a>
+        <a class="btn outline" href="#">Librerías</a>
+        <a class="btn outline" href="#">Tiendas online</a>
+      </div>
+      <p class="note bordered" style="max-width:56ch;">Estos botones son de ejemplo — sustitúyelos por los enlaces reales en cuanto los tengas.</p>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= REDES SOCIALES ================= -->
+  <section id="sociales">
+    <div class="wrap reveal">
+      <span class="eyebrow">Síguenos</span>
+      <h2 class="h-title">En redes sociales</h2>
+      <p style="max-width:52ch; color:var(--ink-soft); margin-bottom:30px;">Novedades, fragmentos e ilustraciones del poemario.</p>
+
+      <div class="social-row">
+        <!-- Sustituye los "#" por los perfiles reales -->
+        <a class="btn outline" href="#">Instagram</a>
+        <a class="btn outline" href="#">TikTok</a>
+        <a class="btn outline" href="#">Facebook</a>
+        <a class="btn outline" href="#">X</a>
+      </div>
+      <p class="note bordered" style="max-width:56ch;">Añade aquí los enlaces a los perfiles reales de la autora o del libro.</p>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= ALGO EXCLUSIVO ================= -->
+  <section id="exclusivo" class="alt">
+    <div class="wrap reveal">
+      <span class="eyebrow">Un poco más</span>
+      <h2 class="h-title">Detrás del libro</h2>
+
+      <div class="exclusive-grid" style="margin-top:20px;">
+
+        <!-- Marcapáginas (mockup) -->
+        <div>
+          <div class="bookmark-card">
+            <svg viewBox="0 0 160 340" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 6 H154 V310 L80 274 L6 310 Z" fill="var(--paper)" stroke="var(--line)" stroke-width="1.5"/>
+              <g transform="translate(80,84) scale(0.85)">
+                <path d="M0,0 C-16,-24 -22,-50 -8,-64 C4,-74 22,-70 24,-52 C26,-34 12,-14 0,0 Z" fill="var(--poppy)"/>
+                <path d="M0,0 C16,-24 22,-50 8,-64 C-4,-74 -22,-70 -24,-52 C-26,-34 -12,-14 0,0 Z" fill="var(--poppy-bright)"/>
+                <circle cx="0" cy="0" r="6" fill="var(--poppy-dark)"/>
+              </g>
+              <text x="80" y="168" text-anchor="middle" style="font-family:var(--display); font-style:italic; font-size:17px; fill:var(--ink);">La vida</text>
+              <text x="80" y="192" text-anchor="middle" style="font-family:var(--display); font-style:italic; font-size:17px; fill:var(--ink);">que me roza</text>
+              <text x="80" y="222" text-anchor="middle" style="font-family:var(--utility); font-size:10px; letter-spacing:.14em; fill:var(--ink-soft);">ÁNGELES FRANCO</text>
+            </svg>
+          </div>
+          <p class="note" style="margin-top:18px; max-width:36ch;">Marcapáginas descargable — de momento, un adelanto. Muy pronto podrás descargarlo aquí.</p>
+        </div>
+
+        <!-- Carrusel de ilustraciones -->
+        <div>
+          <p class="carousel-intro">Algunas imágenes que acompañan el proceso de este poemario.</p>
+          <div class="carousel-wrap">
+            <button class="carousel-nav prev" id="carPrev" aria-label="Imagen anterior">‹</button>
+            <div class="carousel" id="illustrationsCarousel">
+              <figure class="carousel-slide">
+                <img src="assets/images/cuadro-inspiracion.jpeg" alt="Cuadro con la silueta de dos rostros formada por ramas de árboles, en blanco y negro">
+                <figcaption>El cuadro que inspiró varios de los versos sobre el encuentro y la mirada.</figcaption>
+              </figure>
+              <figure class="carousel-slide">
+                <img src="assets/images/rosa.jpeg" alt="Amapola roja en un campo silvestre">
+                <figcaption>La amapola que dio nombre a la portada: color y fragilidad a la vez.</figcaption>
+              </figure>
+              <figure class="carousel-slide">
+                <img src="assets/images/artista.jpeg" alt="El artista dibujando, concentrado, en una mesa">
+                <figcaption>El artista dando los últimos trazos a las imágenes de este libro.</figcaption>
+              </figure>
+              <figure class="carousel-slide">
+                <img src="assets/images/autora-y-artista.jpeg" alt="La autora y el artista abrazados y sonriendo">
+                <figcaption>La autora y el artista, cómplices en este proyecto.</figcaption>
+              </figure>
+              <figure class="carousel-slide">
+                <img src="assets/images/noche.jpeg" alt="Vista nocturna de un puente iluminado sobre un río">
+                <figcaption>Una noche cualquiera que también dejó su huella en estas páginas.</figcaption>
+              </figure>
+            </div>
+            <button class="carousel-nav next" id="carNext" aria-label="Imagen siguiente">›</button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -567,6 +836,23 @@
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.15 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+<!-- Carrusel de ilustraciones (sección "Detrás del libro") -->
+<script>
+(function(){
+  const track = document.getElementById('illustrationsCarousel');
+  const prev  = document.getElementById('carPrev');
+  const next  = document.getElementById('carNext');
+  if(!track || !prev || !next) return;
+
+  function step(){
+    const slide = track.querySelector('.carousel-slide');
+    return slide ? slide.getBoundingClientRect().width + 20 : 300;
+  }
+  prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
+})();
 </script>
 
 <!-- Libraries for the interactive page-flip reader -->
