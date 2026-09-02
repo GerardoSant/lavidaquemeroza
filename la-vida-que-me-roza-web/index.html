@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La vida que me roza — Ángeles Franco</title>
+<meta name="description" content="La vida que me roza, poemario de Ángeles Franco. Un viaje por aquello que nos toca y permanece.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,400;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Work+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="assets/images/portada.jpg">
+
+<style>
+  :root{
+    --cream:        #F4EBDD;
+    --cream-deep:   #EAE0CD;
+    --paper:        #FBF6EE;
+    --ink:          #2B2320;
+    --ink-soft:     #5B4F47;
+    --poppy:        #A5241C;
+    --poppy-dark:   #5E1712;
+    --poppy-bright: #C93A26;
+    --rose-dust:    #D8A99B;
+    --gold:         #A5824F;
+    --line:         rgba(43,35,32,0.14);
+
+    --display: "Fraunces", "Iowan Old Style", serif;
+    --body:    "Newsreader", "Iowan Old Style", serif;
+    --utility: "Work Sans", sans-serif;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:18px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  ::selection{ background:var(--poppy); color:var(--paper); }
+
+  a{ color:inherit; }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 clamp(20px,5vw,64px);
+  }
+
+  /* ---------- reveal-on-scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .9s ease, transform .9s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(244,235,221,0.86);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px;
+    padding:16px clamp(20px,5vw,64px);
+    max-width:1120px; margin:0 auto;
+  }
+  .nav-mark{
+    display:flex; align-items:center; gap:10px; flex:none;
+    font-family:var(--utility); font-size:13px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none;
+  }
+  .nav-mark svg{ width:20px; height:20px; flex:none; }
+
+  /* Desktop link row: scrolls horizontally instead of silently hiding items
+     when there isn't enough width for every section link. */
+  .nav-links{
+    display:flex; align-items:center; gap:clamp(12px,2vw,24px);
+    font-family:var(--utility); font-size:13px; letter-spacing:.08em; text-transform:uppercase;
+    overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;
+    min-width:0;
+  }
+  .nav-links::-webkit-scrollbar{ display:none; }
+  .nav-links a{ text-decoration:none; color:var(--ink-soft); position:relative; white-space:nowrap; flex:none; padding-bottom:2px; }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-4px; height:1px;
+    background:var(--poppy); transform:scaleX(0); transform-origin:left;
+    transition:transform .3s ease;
+  }
+  .nav-links a:hover::after{ transform:scaleX(1); }
+
+  /* Hamburger toggle: hidden on desktop, shown on mobile */
+  .nav-toggle{
+    display:none; flex:none;
+    width:36px; height:36px; align-items:center; justify-content:center;
+    background:none; border:1px solid var(--line); border-radius:2px;
+    cursor:pointer; padding:0;
+  }
+  .nav-toggle svg{ width:18px; height:18px; color:var(--ink); }
+
+  /* Mobile dropdown panel with the same links, stacked and always reachable */
+  .nav-mobile{
+    display:none;
+    flex-direction:column;
+    max-width:1120px; margin:0 auto;
+    padding:0 clamp(20px,5vw,64px) 18px;
+  }
+  .nav-mobile a{
+    text-decoration:none; color:var(--ink-soft);
+    font-family:var(--utility); font-size:14px; letter-spacing:.06em; text-transform:uppercase;
+    padding:12px 0; border-top:1px solid var(--line);
+  }
+  .nav-mobile a:hover{ color:var(--poppy); }
+
+  @media (max-width:760px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:flex; }
+    header.nav.is-open .nav-mobile{ display:flex; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:clamp(40px,9vw,110px) 0 clamp(60px,10vw,120px);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items:center;
+    gap:clamp(24px,5vw,40px);
+  }
+  @media (max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-art{ order:-1; max-width:280px; margin:0 auto; }
+  }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--utility); font-size:12.5px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--poppy); margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:""; width:26px; height:1px; background:var(--poppy);
+  }
+
+  h1.title{
+    font-family:var(--display);
+    font-weight:450;
+    font-optical-sizing:auto;
+    font-size:clamp(56px, 9.5vw, 118px);
+    line-height:0.92;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  h1.title em{
+    font-style:italic; font-weight:400; color:var(--poppy);
+  }
+
+  .hero-sub{
+    margin-top:26px;
+    max-width:46ch;
+    font-family:var(--body);
+    font-style:italic;
+    font-size:clamp(18px,2vw,21px);
+    color:var(--ink-soft);
+  }
+
+  .hero-byline{
+    margin-top:30px;
+    font-family:var(--utility);
+    font-size:14px; letter-spacing:.06em;
+    color:var(--ink-soft);
+  }
+  .hero-byline strong{ color:var(--ink); font-weight:500; }
+
+  .hero-cta{
+    margin-top:40px;
+    display:inline-flex; align-items:center; gap:12px;
+    font-family:var(--utility); font-size:14px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--paper); background:var(--poppy);
+    padding:14px 26px; border-radius:2px;
+    text-decoration:none;
+    transition:background .25s ease, transform .25s ease;
+  }
+  .hero-cta:hover{ background:var(--poppy-dark); transform:translateY(-1px); }
+  .hero-cta svg{ width:14px; height:14px; transition:transform .25s ease; }
+  .hero-cta:hover svg{ transform:translateY(3px); }
+
+  .hero-art{ position:relative; }
+
+  /* ---------- hero cover (portada.jpg) ---------- */
+  .cover-frame{
+    position:relative;
+    max-width:340px;
+    margin:0 auto;
+  }
+  .cover-frame::before{
+    content:"";
+    position:absolute;
+    top:-34px; right:-34px;
+    width:220px; height:220px;
+    background:radial-gradient(circle, var(--poppy) 0%, transparent 70%);
+    opacity:.32;
+    filter:blur(4px);
+    z-index:0;
+  }
+  .cover-img{
+    position:relative; z-index:1;
+    display:block; width:100%;
+    border:1px solid var(--line);
+    box-shadow: 0 40px 80px -30px rgba(43,35,32,0.45);
+    transform:rotate(-2deg);
+  }
+
+  /* ---------- hero video accent (transición de imágenes del libro) ---------- */
+  .hero-video-chip{
+    position:absolute;
+    bottom:-34px; left:-34px;
+    width:132px; height:132px;
+    z-index:2;
+    border:1px solid var(--line);
+    background:var(--paper);
+    box-shadow: 0 24px 54px -22px rgba(43,35,32,0.5);
+    transform:rotate(-5deg);
+    overflow:hidden;
+  }
+  .hero-video-chip video{
+    width:100%; height:100%;
+    object-fit:cover; display:block;
+  }
+  @media (max-width:860px){
+    .hero-video-chip{ width:96px; height:96px; bottom:-20px; left:-16px; }
+  }
+
+  /* ---------- section shell ---------- */
+  section{ padding:clamp(70px,11vw,130px) 0; position:relative; }
+  section.alt{ background:var(--cream-deep); }
+
+  .divider{
+    display:flex; align-items:center; gap:18px;
+    max-width:1120px; margin:0 auto;
+    padding:0 clamp(20px,5vw,64px);
+  }
+  .divider .rule{ flex:1; height:1px; background:var(--line); }
+  .divider svg{ width:18px; height:18px; flex:none; opacity:.85; }
+
+  h2.h-title{
+    font-family:var(--display);
+    font-weight:450;
+    font-size:clamp(36px,5vw,58px);
+    line-height:1.02;
+    margin-bottom:26px;
+    color:var(--ink);
+  }
+
+  .note{
+    font-family:var(--utility); font-size:12.5px; letter-spacing:.03em; color:var(--ink-soft);
+  }
+  .note.bordered{
+    margin-top:26px; padding-top:18px; border-top:1px solid var(--line);
+  }
+
+  /* ---------- author ---------- */
+  .author-grid{
+    display:grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap:clamp(40px,6vw,80px);
+    align-items:start;
+  }
+  @media (max-width:860px){ .author-grid{ grid-template-columns:1fr; } }
+
+  .author-frame{
+    position:relative;
+    aspect-ratio: 3/4;
+    border:1px solid var(--line);
+    background:
+      radial-gradient(circle at 32% 28%, rgba(165,36,28,0.10), transparent 55%),
+      var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .author-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .author-frame figcaption{
+    position:absolute; bottom:16px; left:16px; right:16px;
+    font-family:var(--utility); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--paper);
+    text-shadow: 0 1px 6px rgba(0,0,0,.55);
+  }
+
+  .author-copy p{ margin-bottom:18px; max-width:56ch; color:var(--ink-soft); }
+  .author-copy p:first-of-type{ color:var(--ink); font-size:1.08em; }
+
+  .author-copy .note{ margin-top:26px; padding-top:18px; border-top:1px solid var(--line); }
+  .author-copy .note a{ color:var(--poppy); text-decoration:underline; text-underline-offset:3px; }
+
+  /* ---------- sinopsis ---------- */
+  .syn-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:clamp(40px,6vw,90px);
+    align-items:start;
+  }
+  @media (max-width:860px){ .syn-grid{ grid-template-columns:1fr; } }
+
+  .syn-grid p{ margin-bottom:20px; color:var(--ink-soft); }
+
+  blockquote.pull{
+    font-family:var(--display);
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(24px,2.6vw,32px);
+    line-height:1.32;
+    color:var(--poppy);
+    border-left:2px solid var(--poppy);
+    padding-left:28px;
+  }
+  blockquote.pull span{
+    display:block; margin-top:16px;
+    font-family:var(--utility); font-style:normal; font-size:12.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);
+  }
+
+  /* ---------- por qué leerlo ---------- */
+  .reasons-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:clamp(30px,4.5vw,54px) clamp(30px,5vw,64px);
+  }
+  @media (max-width:700px){ .reasons-grid{ grid-template-columns:1fr; } }
+
+  .reason-icon{ width:30px; height:30px; color:var(--poppy); margin-bottom:16px; display:block; }
+  .reason-card h3{
+    font-family:var(--display); font-weight:500; font-size:1.32em;
+    margin-bottom:10px; color:var(--ink);
+  }
+  .reason-card p{ color:var(--ink-soft); max-width:46ch; }
+
+  /* ---------- trailer (slim band) ---------- */
+  .trailer-section{ padding:clamp(48px,7vw,72px) 0 !important; }
+  .trailer-inner{
+    display:flex; flex-wrap:wrap; gap:24px;
+    align-items:center; justify-content:space-between;
+  }
+  .trailer-inner .hero-cta{ margin-top:0; flex:none; }
+
+  /* ---------- reseñas placeholder ---------- */
+  .review-placeholder{
+    border:1px dashed var(--line);
+    padding:clamp(28px,4vw,46px);
+    max-width:64ch;
+  }
+  .review-placeholder p{ color:var(--ink-soft); }
+  .review-placeholder p:first-child{
+    font-family:var(--display); font-style:italic; font-size:1.18em; color:var(--ink); margin-bottom:14px;
+  }
+
+  /* ---------- dónde comprar / redes ---------- */
+  .buy-grid, .social-row{ display:flex; flex-wrap:wrap; gap:16px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--utility); font-size:14px; letter-spacing:.05em; text-transform:uppercase;
+    text-decoration:none; padding:13px 24px; border-radius:2px;
+    transition:background .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .btn.solid{ background:var(--ink); color:var(--paper); }
+  .btn.solid:hover{ background:var(--poppy); }
+  .btn.outline{ border:1px solid var(--ink); color:var(--ink); }
+  .btn.outline:hover{ border-color:var(--poppy); color:var(--poppy); }
+  .btn svg{ width:14px; height:14px; }
+  .buy-grid .btn{ min-width:150px; justify-content:center; }
+
+  /* ---------- detrás del libro: carrusel de ilustraciones ---------- */
+  .carousel-intro{ color:var(--ink-soft); max-width:52ch; margin-bottom:26px; }
+
+  .carousel-wrap{ position:relative; }
+  .carousel{
+    display:flex; gap:20px;
+    overflow-x:auto; scroll-snap-type:x mandatory;
+    scrollbar-width:none; padding-bottom:4px;
+  }
+  .carousel::-webkit-scrollbar{ display:none; }
+  .carousel-slide{ flex:0 0 min(300px, 78%); scroll-snap-align:start; }
+  .carousel-slide img{
+    width:100%; aspect-ratio: 4/5; object-fit:cover;
+    border:1px solid var(--line); display:block;
+  }
+  .carousel-slide figcaption{
+    margin-top:12px; font-family:var(--utility); font-size:13px;
+    line-height:1.5; color:var(--ink-soft);
+  }
+  .carousel-nav{
+    position:absolute; top:38%; transform:translateY(-50%);
+    width:40px; height:40px; border-radius:50%;
+    border:1px solid var(--line); background:var(--paper);
+    color:var(--ink); font-family:var(--display); font-size:20px; line-height:1;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+    z-index:5;
+  }
+  .carousel-nav:hover{ background:var(--poppy); color:var(--paper); border-color:var(--poppy); }
+  .carousel-nav.prev{ left:-14px; }
+  .carousel-nav.next{ right:-14px; }
+  @media (max-width:680px){ .carousel-nav{ display:none; } }
+
+  /* ---------- marcapáginas: carrusel de anverso/reverso ---------- */
+  .bm-carousel{
+    display:flex; gap:32px;
+    overflow-x:auto; scroll-snap-type:x mandatory;
+    scrollbar-width:none; padding-bottom:6px;
+  }
+  .bm-carousel::-webkit-scrollbar{ display:none; }
+  .bm-slide{
+    flex:0 0 min(360px, 86%); scroll-snap-align:start;
+    text-align:center;
+  }
+  .bm-pair{ display:flex; gap:14px; justify-content:center; align-items:flex-start; }
+  .bm-pair img{
+    height:300px; width:auto; max-width:47%;
+    object-fit:contain;
+    border:1px solid var(--line); background:var(--paper);
+    box-shadow: 0 24px 54px -30px rgba(43,35,32,0.4);
+  }
+  .bm-slide figcaption{
+    margin-top:18px; font-family:var(--display); font-style:italic; font-size:1.15em; color:var(--ink);
+  }
+  .bm-caption-sub{
+    margin-top:4px; font-family:var(--utility); font-size:11.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-soft);
+  }
+  @media (max-width:480px){ .bm-pair img{ height:230px; } }
+
+  /* ---------- lightbox (imágenes ampliadas) ---------- */
+  .carousel-slide img,
+  .bm-pair img{ cursor:zoom-in; transition:opacity .2s ease; }
+  .carousel-slide img:hover,
+  .bm-pair img:hover{ opacity:.88; }
+
+  .lightbox-overlay{
+    position:fixed; inset:0; z-index:300;
+    display:none; align-items:center; justify-content:center;
+    background:rgba(20,14,12,0.94);
+    padding:clamp(20px,6vw,60px);
+    opacity:0; transition:opacity .25s ease;
+  }
+  .lightbox-overlay.is-open{ display:flex; opacity:1; }
+
+  .lightbox-figure{
+    max-width:min(92vw,760px); max-height:90vh;
+    text-align:center;
+  }
+  .lightbox-figure img{
+    display:block; margin:0 auto;
+    max-width:100%; max-height:78vh; width:auto; height:auto;
+    background:var(--paper);
+    box-shadow:0 50px 100px -30px rgba(0,0,0,.65);
+  }
+  .lightbox-caption{
+    margin-top:18px;
+    font-family:var(--utility); font-size:12.5px; letter-spacing:.08em;
+    color:var(--paper); opacity:.85;
+  }
+
+  .lightbox-close, .lightbox-nav{
+    position:absolute;
+    border:1px solid rgba(251,246,238,0.35);
+    background:rgba(255,255,255,0.06);
+    color:var(--paper);
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:50%;
+    transition:background .2s ease, border-color .2s ease;
+  }
+  .lightbox-close:hover, .lightbox-nav:hover{ background:var(--poppy); border-color:var(--poppy); }
+
+  .lightbox-close{
+    top:clamp(14px,3vw,26px); right:clamp(14px,3vw,26px);
+    width:40px; height:40px; font-size:22px; line-height:1;
+  }
+  .lightbox-nav{
+    top:50%; transform:translateY(-50%);
+    width:46px; height:46px;
+    font-family:var(--display); font-size:24px; line-height:1;
+  }
+  .lightbox-nav.prev{ left:clamp(8px,3vw,26px); }
+  .lightbox-nav.next{ right:clamp(8px,3vw,26px); }
+  @media (max-width:600px){
+    .lightbox-nav{ width:38px; height:38px; font-size:19px; }
+    .lightbox-close{ width:34px; height:34px; font-size:19px; }
+  }
+
+  /* ---------- book / embed ---------- */
+  .book-frame{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--paper);
+    padding:14px;
+    box-shadow: 0 30px 60px -30px rgba(43,35,32,0.35);
+  }
+  .book-frame .bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:4px 6px 14px;
+    font-family:var(--utility); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .book-frame .bar .dots{ display:flex; gap:6px; }
+  .book-frame .bar .dots span{ width:8px; height:8px; border-radius:50%; background:var(--rose-dust); display:block; }
+
+  .pdf-embed{
+    width:100%;
+    height:min(78vh, 820px);
+    border:none;
+    background:#fff;
+    display:block;
+  }
+  .pdf-fallback{
+    padding:60px 20px; text-align:center; font-family:var(--utility); font-size:14px; color:var(--ink-soft);
+  }
+
+  .book-actions{
+    margin-top:26px;
+    display:flex; flex-wrap:wrap; gap:16px; align-items:center;
+  }
+
+  /* ---------- flipbook (interactive reader) ---------- */
+  .flip-stage{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    padding:clamp(10px,3vw,30px) 56px;
+    min-height:340px;
+  }
+  #flipbook{
+    box-shadow: 0 40px 80px -30px rgba(43,35,32,0.45);
+  }
+  #flipbook .page{ background:#fff; }
+  #flipbook .page img{ width:100%; height:100%; display:block; object-fit:cover; }
+
+  .fb-nav{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:44px; height:44px; border-radius:50%;
+    border:1px solid var(--line); background:var(--paper);
+    color:var(--ink); font-family:var(--display); font-size:22px; line-height:1;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+    z-index:5;
+  }
+  .fb-nav:hover{ background:var(--poppy); color:var(--paper); border-color:var(--poppy); }
+  .fb-nav:disabled{ opacity:.3; cursor:default; }
+  .fb-nav:disabled:hover{ background:var(--paper); color:var(--ink); border-color:var(--line); }
+  .fb-nav.prev{ left:0; }
+  .fb-nav.next{ right:0; }
+  @media (max-width:600px){
+    .flip-stage{ padding:10px 44px; }
+    .fb-nav{ width:36px; height:36px; font-size:18px; }
+  }
+
+  .fb-bar{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:520px; margin:18px auto 0;
+    font-family:var(--utility); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .fb-progress-wrap{
+    max-width:520px; margin:0 auto; height:2px; background:var(--line); position:relative; overflow:hidden;
+  }
+  .fb-progress-bar{
+    position:absolute; left:0; top:0; bottom:0; width:0%;
+    background:var(--poppy); transition:width .2s ease;
+  }
+  .fb-loading{
+    text-align:center; font-family:var(--utility); font-size:13px; letter-spacing:.05em;
+    color:var(--ink-soft); margin-bottom:14px;
+  }
+  .flip-stage.is-hidden, .fb-bar.is-hidden, .fb-progress-wrap.is-hidden, .fb-loading.is-hidden{ display:none; }
+
+  details.fb-fallback-toggle{
+    margin-top:30px; font-family:var(--utility); font-size:13px; color:var(--ink-soft);
+  }
+  details.fb-fallback-toggle summary{ cursor:pointer; color:var(--ink); }
+  details.fb-fallback-toggle .book-frame{ margin-top:18px; }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:50px 0 40px;
+    border-top:1px solid var(--line);
+  }
+  .foot-inner{
+    display:flex; flex-wrap:wrap; gap:16px;
+    align-items:center; justify-content:space-between;
+    font-family:var(--utility); font-size:12.5px; letter-spacing:.05em;
+    color:var(--ink-soft);
+  }
+  .foot-inner svg{ width:16px; height:16px; vertical-align:-3px; margin-right:8px; }
+
+  /* poppy motif rotation helper */
+  .poppy-spin{ transform-origin:200px 200px; }
+</style>
+</head>
+<body>
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <a class="nav-mark" href="#top">
+      <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="6" fill="var(--poppy-dark)"/><path d="M20 20 C12 14 10 6 16 3 C21 1 26 5 24 12 C22 17 20 20 20 20Z" fill="var(--poppy)"/><path d="M20 20 C28 14 30 6 24 3 C19 1 14 5 16 12 C18 17 20 20 20 20Z" fill="var(--poppy-bright)"/></svg>
+      La vida que me roza
+    </a>
+    <nav class="nav-links">
+      <a href="#sinopsis">Sinopsis</a>
+      <a href="#por-que-leerlo">Por qué leerlo</a>
+      <a href="#trailer">Tráiler</a>
+      <a href="#autora">La autora</a>
+      <a href="#marcapaginas">Marcapáginas</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="navMobile">
+    <a href="#sinopsis">Sinopsis</a>
+    <a href="#por-que-leerlo">Por qué leerlo</a>
+    <a href="#trailer">Tráiler</a>
+    <a href="#libro">El poemario</a>
+    <a href="#resenas">Reseñas</a>
+    <a href="#autora">La autora</a>
+    <a href="#exclusivo">Detrás del libro</a>
+    <a href="#marcapaginas">Marcapáginas</a>
+    <a href="#comprar">Comprar</a>
+    <a href="#sociales">Redes</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO / PORTADA ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Poesía · Ángeles Franco</span>
+        <h1 class="title">La vida<br>que me <em>roza</em></h1>
+        <p class="hero-sub">Un viaje por aquello que nos toca y permanece: el encuentro, el deseo, la ausencia y la vida que insiste en mirarse de nuevo.</p>
+        <p class="hero-byline">Poemario de <strong>Ángeles Franco</strong> — Begin Book Ediciones</p>
+        <a class="hero-cta" href="#libro">
+          Leer el poemario
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-art">
+        <div class="cover-frame">
+          <img class="cover-img" src="assets/images/portada.jpg" alt="Portada de La vida que me roza, de Ángeles Franco: una amapola sobre fondo claro">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= PRESENTACIÓN / SINOPSIS ================= -->
+  <section id="sinopsis" class="alt">
+    <div class="wrap reveal">
+      <span class="eyebrow">Sinopsis</span>
+      <h2 class="h-title">Aquello que nos toca<br>y permanece</h2>
+
+      <div class="syn-grid" style="margin-top:36px;">
+        <div>
+          <p>La vida que me roza es un viaje por aquello que nos toca y permanece.</p>
+          <p>Ángeles Franco recorre en estas páginas los territorios del encuentro y del deseo, la intimidad de la piel y la palabra, pero también la ausencia, la fragilidad, la enfermedad y esos momentos en los que la vida obliga a mirarse de nuevo.</p>
+          <p>A medida que avanza el poemario, el amor deja de ser únicamente el vínculo entre dos personas para ensancharse hacia la amistad, la naturaleza, el mar, la gratitud y la propia existencia. El cuerpo que ama es también el cuerpo que cambia, que recuerda, que atraviesa pérdidas y aprende a regresar a sí mismo.</p>
+          <p>Con una voz cercana, sensual y luminosa, la autora convierte gestos cotidianos —unas manos, un café, una mirada, una orilla— en lugares donde cabe una vida entera.</p>
+        </div>
+        <blockquote class="pull">
+          Quizá vivir no consista en atravesar intactos el tiempo, sino en conservar la capacidad de sentir, de amar y de dejarnos rozar por aquello que nos transforma.
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= POR QUÉ LEERLO ================= -->
+  <section id="por-que-leerlo">
+    <div class="wrap reveal">
+      <span class="eyebrow">Razones para empezar</span>
+      <h2 class="h-title">¿Por qué leerlo?</h2>
+      <p style="max-width:56ch; color:var(--ink-soft); margin-bottom:44px;">Cuatro motivos, entre muchos, para dejarte rozar por estos poemas.</p>
+
+      <div class="reasons-grid">
+        <div class="reason-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.2-4.4-9.6-9.1C.8 7 2.1 3 5.6 3c2.5 0 4.6 2 6.4 4 1.8-2 3.9-4 6.4-4 3.5 0 4.8 4 3.2 7.9C19.2 15.6 12 20 12 20z"/></svg>
+          <h3>Una voz que no esconde nada</h3>
+          <p>La autora escribe desde muy cerca, sin rehuir la piel, el deseo ni la pérdida. Cada poema se lee como una confidencia entre dos personas,  un diálogo que se convierte en un ejercicio de introspección.</p>
+        </div>
+
+        <div class="reason-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2M2 14.5c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2M2 21c2 0 2 2 4 2s2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2"/></svg>
+          <h3>Del amor a todo lo que amamos</h3>
+          <p>El vínculo entre dos personas se abre paso hacia la amistad, la naturaleza y el mar, ensanchando lo que entendemos por amor.</p>
+        </div>
+
+        <div class="reason-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.2c-1.9-1.5-4.4-2.1-7.4-2.1v14.6c3 0 5.5.6 7.4 2.1 1.9-1.5 4.4-2.1 7.4-2.1V4.1c-3 0-5.5.6-7.4 2.1z"/><path d="M12 6.2v14.6"/></svg>
+          <h3>Lecturas breves, para cualquier momento</h3>
+          <p>Poemas pensados para leerse de uno en uno: entre una taza de café, un trayecto o una pausa del día.</p>
+        </div>
+
+        <div class="reason-card">
+          <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/></svg>
+          <h3>Un espejo para lo que nos transforma</h3>
+          <p>La fragilidad y la enfermedad aparecen sin dramatismo, como parte natural de aprender a mirarse de nuevo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= TRÁILER ================= -->
+  <section id="trailer" class="alt trailer-section">
+    <div class="wrap trailer-inner reveal">
+      <div>
+        <span class="eyebrow">Adelanto</span>
+        <h2 class="h-title" style="font-size:clamp(28px,3.6vw,42px); margin-bottom:12px;">Muy pronto, en vídeo</h2>
+        <p style="color:var(--ink-soft); max-width:50ch;">Estamos preparando un pequeño tráiler del poemario. Síguenos para no perdértelo.</p>
+      </div>
+      <a class="hero-cta" href="#sociales">
+        Ir a redes sociales
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= LIBRO / FRAGMENTO ================= -->
+  <section id="libro">
+    <div class="wrap reveal">
+      <span class="eyebrow">El poemario</span>
+      <h2 class="h-title">Léelo aquí, hasta el primer poema</h2>
+      <p style="max-width:56ch; color:var(--ink-soft); margin-bottom:36px;">Pasa las páginas como si tuvieras el libro en las manos: este adelanto llega hasta el primer poema.</p>
+
+      <p id="fbLoading" class="fb-loading">Preparando el libro…</p>
+      <div id="fbProgressWrap" class="fb-progress-wrap"><div id="fbProgressBar" class="fb-progress-bar"></div></div>
+
+      <div id="flipStage" class="flip-stage is-hidden">
+        <button id="fbPrev" class="fb-nav prev" aria-label="Página anterior">‹</button>
+        <div id="flipbook"></div>
+        <button id="fbNext" class="fb-nav next" aria-label="Página siguiente">›</button>
+      </div>
+      <div id="fbBar" class="fb-bar is-hidden">
+        <span>Ángeles Franco</span>
+        <span id="fbCounter">— / —</span>
+      </div>
+
+      <div class="book-actions" style="margin-top:34px;">
+        <a class="btn solid" href="La-vida-que-me-roza.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          Descargar PDF
+        </a>
+      </div>
+
+      <details class="fb-fallback-toggle" id="fbFallbackDetails" style="display:none;">
+        <summary>¿No ves el libro? Ábrelo como PDF clásico</summary>
+        <div class="book-frame">
+          <div class="bar">
+            <span>La vida que me roza — Ángeles Franco</span>
+            <span class="dots"><span></span><span></span><span></span></span>
+          </div>
+          <object class="pdf-embed" data="La-vida-que-me-roza.pdf" type="application/pdf">
+            <p class="pdf-fallback">
+              Tu navegador no puede mostrar el PDF aquí.<br>
+              <a class="btn outline" style="margin-top:14px;" href="La-vida-que-me-roza.pdf" target="_blank" rel="noopener">Abrir el PDF</a>
+            </p>
+          </object>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= RESEÑAS ================= -->
+  <section id="resenas" class="alt">
+    <div class="wrap reveal">
+      <span class="eyebrow">Voces</span>
+      <h2 class="h-title">Lo que dicen del libro</h2>
+
+      <div class="review-placeholder">
+        <p>Aquí aparecerán las reseñas de medios, blogs literarios o autores que quieran compartir su lectura de <em>La vida que me roza</em>.</p>
+        <p>De momento, este espacio espera sus primeras palabras — añade aquí citas reales cuando las tengas, con el permiso de quien las escribió.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= SOBRE LA AUTORA ================= -->
+  <section id="autora">
+    <div class="wrap author-grid reveal">
+      <figure class="author-frame">
+        <img src="assets/images/autora.jpeg" alt="Retrato de Ángeles Franco, autora del poemario, al aire libre entre olivos">
+        <figcaption>Ángeles Franco · autora</figcaption>
+      </figure>
+
+      <div class="author-copy">
+        <span class="eyebrow">La autora</span>
+        <h2 class="h-title">Ángeles Franco</h2>
+        <p>Escribe desde la certeza de que las cosas pequeñas —unas manos, un café, una orilla— son, en realidad, donde cabe una vida entera. Su poesía nace de la observación paciente: de la piel, del tiempo, del cuerpo que ama y que también cambia.</p>
+        <p>En <em>La vida que me roza</em> recorre los territorios del encuentro y del deseo, pero también la fragilidad y la enfermedad, esos instantes en que la vida obliga a mirarse de nuevo. Una voz cercana, sensual y luminosa que convierte lo cotidiano en un lugar donde quedarse.</p>
+        <p class="note">Puedes ampliar esta biografía cuando quieras. Sigue el proceso del libro en <a href="#sociales">redes sociales</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= DÓNDE COMPRARLO ================= -->
+  <section id="comprar" class="alt">
+    <div class="wrap reveal">
+      <span class="eyebrow">Consíguelo</span>
+      <h2 class="h-title">Dónde comprarlo</h2>
+      <p style="max-width:52ch; color:var(--ink-soft); margin-bottom:34px;">Elige el formato que prefieras.</p>
+
+      <div class="buy-grid">
+        <!-- Sustituye los "#" por los enlaces reales de cada tienda/formato -->
+        <a class="btn outline" href="#">Libro físico</a>
+        <a class="btn outline" href="#">Ebook</a>
+        <a class="btn outline" href="#">Audiolibro</a>
+        <a class="btn outline" href="#">Librerías</a>
+        <a class="btn outline" href="#">Tiendas online</a>
+      </div>
+      <p class="note bordered" style="max-width:56ch;">Estos botones son de ejemplo — sustitúyelos por los enlaces reales en cuanto los tengas.</p>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= REDES SOCIALES ================= -->
+  <section id="sociales">
+    <div class="wrap reveal">
+      <span class="eyebrow">Síguenos</span>
+      <h2 class="h-title">En redes sociales</h2>
+      <p style="max-width:52ch; color:var(--ink-soft); margin-bottom:30px;">Novedades, fragmentos e ilustraciones del poemario.</p>
+
+      <div class="social-row">
+        <!-- Sustituye los "#" por los perfiles reales -->
+        <a class="btn outline" href="#">Instagram</a>
+        <a class="btn outline" href="#">TikTok</a>
+        <a class="btn outline" href="#">Facebook</a>
+        <a class="btn outline" href="#">X</a>
+      </div>
+      <p class="note bordered" style="max-width:56ch;">Añade aquí los enlaces a los perfiles reales de la autora o del libro.</p>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= ALGO EXCLUSIVO ================= -->
+  <section id="exclusivo" class="alt">
+    <div class="wrap reveal">
+      <span class="eyebrow">Un poco más</span>
+      <h2 class="h-title">Detrás del libro</h2>
+
+      <div style="margin-top:20px; max-width:760px;">
+        <p class="carousel-intro">Algunas imágenes que acompañan el proceso de este poemario.</p>
+        <div class="carousel-wrap">
+          <button class="carousel-nav prev" id="carPrev" aria-label="Imagen anterior">‹</button>
+          <div class="carousel" id="illustrationsCarousel">
+            <figure class="carousel-slide">
+              <img src="assets/images/cuadro-inspiracion.jpeg" alt="Cuadro con la silueta de dos rostros formada por ramas de árboles, en blanco y negro">
+              <figcaption>El cuadro  que inspiró un poema tipo haiku sobre los besos.</figcaption>
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/images/rosa.jpeg" alt="Amapola roja en un campo silvestre">
+              <figcaption>La amapola que inspiró la ilustración de la portada: color, fragilidad, pasión, evanescencia.</figcaption>
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/images/artista.jpeg" alt="El artista dibujando, concentrado, en una mesa">
+              <figcaption>El artista dando los últimos trazos a las imágenes de este libro.</figcaption>
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/images/autora-y-artista.jpeg" alt="La autora y el artista abrazados y sonriendo">
+              <figcaption>La autora y el artista, cómplices en este proyecto.</figcaption>
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/images/noche.jpeg" alt="Vista nocturna de un puente iluminado sobre un río">
+              <figcaption>Una noche en donde la música  del momento se convierte en regazo.</figcaption>
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/images/mariposa.jpeg" alt="La transformación de una mariposa.">
+              <figcaption>La mariposa nos recuerda que cambiar no es perderse, es encontrarse.</figcaption>
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/images/boceto.jpeg" alt="El boceto de una de las imágenes del libro.">
+              <figcaption>Café oscuro. Aromas que dejan huella.</figcaption>
+            </figure>
+            <figure class="carousel-slide">
+              <img src="assets/images/pagina.jpeg" alt="El desarrollo de una página del libro, con el poema impreso y la ilustración a un lado.">
+              <figcaption>La página web, una ventana hacia el público.</figcaption>
+            </figure>
+          </div>
+          <button class="carousel-nav next" id="carNext" aria-label="Imagen siguiente">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">
+    <div class="rule"></div>
+    <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="3" fill="var(--poppy-dark)"/><path d="M10 10 C6 7 5 3 8 1 C11 0 13 2 12 5 C11 8 10 10 10 10Z" fill="var(--poppy)"/></svg>
+    <div class="rule"></div>
+  </div>
+
+  <!-- ================= MARCAPÁGINAS ================= -->
+  <section id="marcapaginas">
+    <div class="wrap reveal">
+      <span class="eyebrow">Para acompañar la lectura</span>
+      <h2 class="h-title">Marcapáginas personalizados</h2>
+      <p style="max-width:56ch; color:var(--ink-soft); margin-bottom:36px;">Hemos creado unos marcapáginas personalizados para el libro. Deslízalos para ver el anverso y el reverso de los tres diseños.</p>
+
+      <div class="carousel-wrap">
+        <button class="carousel-nav prev" id="bmPrev" aria-label="Marcapáginas anterior">‹</button>
+        <div class="bm-carousel" id="bookmarksCarousel">
+          <figure class="bm-slide">
+            <div class="bm-pair">
+              <img src="assets/images/marcapaginas/mirada-anverso.jpg" alt="Marcapáginas La mirada, anverso, con la ilustración floral del poemario">
+              <img src="assets/images/marcapaginas/mirada-reverso.jpg" alt="Marcapáginas La mirada, reverso, con el poema impreso">
+            </div>
+            <figcaption>La mirada</figcaption>
+            <p class="bm-caption-sub">Anverso · Reverso</p>
+          </figure>
+          <figure class="bm-slide">
+            <div class="bm-pair">
+              <img src="assets/images/marcapaginas/hogar-anverso.jpg" alt="Marcapáginas El hogar, anverso, con la ilustración de la amapola">
+              <img src="assets/images/marcapaginas/hogar-reverso.jpg" alt="Marcapáginas El hogar, reverso, con el poema impreso">
+            </div>
+            <figcaption>El hogar</figcaption>
+            <p class="bm-caption-sub">Anverso · Reverso</p>
+          </figure>
+          <figure class="bm-slide">
+            <div class="bm-pair">
+              <img src="assets/images/marcapaginas/contacto-anverso.jpg" alt="Marcapáginas El contacto, anverso, con la ilustración de la silueta">
+              <img src="assets/images/marcapaginas/contacto-reverso.jpg" alt="Marcapáginas El contacto, reverso, con el poema impreso">
+            </div>
+            <figcaption>El contacto</figcaption>
+            <p class="bm-caption-sub">Anverso · Reverso</p>
+          </figure>
+        </div>
+        <button class="carousel-nav next" id="bmNext" aria-label="Siguiente marcapáginas">›</button>
+      </div>
+
+      <div class="book-actions">
+        <a class="btn solid" href="assets/images/marcapaginas/marcapaginas.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+          Descargar marcapáginas en PDF
+        </a>
+      </div>
+      <p class="note" style="margin-top:16px; max-width:52ch;">El PDF está listo para imprimir a tamaño real (5 × 18 cm) y recortar por las guías.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-inner">
+      <span>
+        <svg viewBox="0 0 40 40" fill="none" style="display:inline-block;"><circle cx="20" cy="20" r="6" fill="var(--poppy-dark)"/><path d="M20 20 C12 14 10 6 16 3 C21 1 26 5 24 12 C22 17 20 20 20 20Z" fill="var(--poppy)"/></svg>
+        Ángeles Franco — <em>La vida que me roza</em> · Begin Book Ediciones
+      </span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+</main>
+
+<!-- Visor de imágenes ampliadas (marcapáginas y detrás del libro) -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar imagen ampliada">×</button>
+  <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Imagen anterior">‹</button>
+  <figure class="lightbox-figure">
+    <img id="lightboxImg" src="" alt="">
+    <figcaption class="lightbox-caption" id="lightboxCaption"></figcaption>
+  </figure>
+  <button class="lightbox-nav next" id="lightboxNext" aria-label="Imagen siguiente">›</button>
+</div>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+<!-- Menú móvil: alterna el desplegable con el hamburger -->
+<script>
+(function(){
+  const nav    = document.getElementById('siteNav');
+  const toggle = document.getElementById('navToggle');
+  const mobile = document.getElementById('navMobile');
+  if(!nav || !toggle || !mobile) return;
+
+  function closeMenu(){
+    nav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  function openMenu(){
+    nav.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+  }
+
+  toggle.addEventListener('click', () => {
+    nav.classList.contains('is-open') ? closeMenu() : openMenu();
+  });
+
+  // Cierra el menú al elegir una sección
+  mobile.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Si la ventana vuelve a tamaño de escritorio, asegúrate de que no quede abierto
+  window.addEventListener('resize', () => { if(window.innerWidth > 760) closeMenu(); });
+})();
+</script>
+
+<!-- Carrusel de ilustraciones (sección "Detrás del libro") -->
+<script>
+(function(){
+  const track = document.getElementById('illustrationsCarousel');
+  const prev  = document.getElementById('carPrev');
+  const next  = document.getElementById('carNext');
+  if(!track || !prev || !next) return;
+
+  function step(){
+    const slide = track.querySelector('.carousel-slide');
+    return slide ? slide.getBoundingClientRect().width + 20 : 300;
+  }
+  prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
+})();
+</script>
+
+<!-- Carrusel de marcapáginas (sección "Marcapáginas") -->
+<script>
+(function(){
+  const track = document.getElementById('bookmarksCarousel');
+  const prev  = document.getElementById('bmPrev');
+  const next  = document.getElementById('bmNext');
+  if(!track || !prev || !next) return;
+
+  function step(){
+    const slide = track.querySelector('.bm-slide');
+    return slide ? slide.getBoundingClientRect().width + 32 : 360;
+  }
+  prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
+})();
+</script>
+
+<!-- Visor ampliado: marcapáginas y detrás del libro -->
+<script>
+(function(){
+  const overlay  = document.getElementById('lightbox');
+  const imgEl    = document.getElementById('lightboxImg');
+  const capEl    = document.getElementById('lightboxCaption');
+  const closeBtn = document.getElementById('lightboxClose');
+  const prevBtn  = document.getElementById('lightboxPrev');
+  const nextBtn  = document.getElementById('lightboxNext');
+  if(!overlay || !imgEl || !closeBtn || !prevBtn || !nextBtn) return;
+
+  let group = [];
+  let index = 0;
+
+  function render(){
+    const item = group[index];
+    if(!item) return;
+    imgEl.src = item.src;
+    imgEl.alt = item.alt;
+    capEl.textContent = item.caption;
+    const multi = group.length > 1;
+    prevBtn.style.display = multi ? 'flex' : 'none';
+    nextBtn.style.display = multi ? 'flex' : 'none';
+  }
+
+  function open(newGroup, newIndex){
+    group = newGroup;
+    index = newIndex;
+    render();
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close(){
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  function step(delta){
+    if(!group.length) return;
+    index = (index + delta + group.length) % group.length;
+    render();
+  }
+
+  function wireGallery(images, groupBuilder){
+    const list = groupBuilder();
+    images.forEach((img, i) => {
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', 'Ampliar imagen');
+      const openThis = () => open(list, i);
+      img.addEventListener('click', openThis);
+      img.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openThis(); }
+      });
+    });
+  }
+
+  // Detrás del libro: cada imagen usa su propio pie de foto
+  const illustrationSlides = Array.from(document.querySelectorAll('#illustrationsCarousel .carousel-slide'));
+  wireGallery(
+    illustrationSlides.map(s => s.querySelector('img')).filter(Boolean),
+    () => illustrationSlides.map(s => {
+      const im  = s.querySelector('img');
+      const cap = s.querySelector('figcaption');
+      return { src: im.getAttribute('src'), alt: im.getAttribute('alt') || '', caption: cap ? cap.textContent : (im.getAttribute('alt') || '') };
+    })
+  );
+
+  // Marcapáginas: cada anverso/reverso se amplía por separado, con su diseño y cara
+  const bmImages = Array.from(document.querySelectorAll('#bookmarksCarousel .bm-pair img'));
+  wireGallery(
+    bmImages,
+    () => bmImages.map(img => {
+      const title = img.closest('.bm-slide')?.querySelector('figcaption')?.textContent || '';
+      const face  = /reverso/i.test(img.getAttribute('alt') || '') ? 'Reverso' : 'Anverso';
+      return { src: img.getAttribute('src'), alt: img.getAttribute('alt') || '', caption: title ? `${title} — ${face}` : face };
+    })
+  );
+
+  closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', () => step(-1));
+  nextBtn.addEventListener('click', () => step(1));
+  overlay.addEventListener('click', (e) => { if(e.target === overlay) close(); });
+  document.addEventListener('keydown', (e) => {
+    if(!overlay.classList.contains('is-open')) return;
+    if(e.key === 'Escape') close();
+    if(e.key === 'ArrowLeft') step(-1);
+    if(e.key === 'ArrowRight') step(1);
+  });
+})();
+</script>
+<link rel="stylesheet" href="https://unpkg.com/page-flip@2.0.7/dist/css/page-flip.css" onerror="this.remove()">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" onerror="window.__pdfjsFailed=true"></script>
+<script src="https://unpkg.com/page-flip@2.0.7/dist/js/page-flip.browser.js" onerror="window.__pageflipFailed=true"></script>
+
+<script>
+(function(){
+  const PDF_URL = 'La-vida-que-me-roza.pdf';
+  const PAGE_RATIO = 595.276 / 419.528; // height / width of the original page
+
+  const loadingEl   = document.getElementById('fbLoading');
+  const progWrap    = document.getElementById('fbProgressWrap');
+  const progBar     = document.getElementById('fbProgressBar');
+  const stage       = document.getElementById('flipStage');
+  const bar         = document.getElementById('fbBar');
+  const counterEl   = document.getElementById('fbCounter');
+  const prevBtn     = document.getElementById('fbPrev');
+  const nextBtn     = document.getElementById('fbNext');
+  const flipbookEl  = document.getElementById('flipbook');
+  const fallbackBox = document.getElementById('fbFallbackDetails');
+
+  function showFallback(){
+    loadingEl.classList.add('is-hidden');
+    progWrap.classList.add('is-hidden');
+    stage.classList.add('is-hidden');
+    bar.classList.add('is-hidden');
+    if(fallbackBox) fallbackBox.style.display = 'block';
+  }
+
+  async function buildFlipbook(){
+    if(typeof pdfjsLib === 'undefined' || typeof St === 'undefined'){
+      throw new Error('Librerías no disponibles (sin conexión al CDN).');
+    }
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    const doc = await pdfjsLib.getDocument(PDF_URL).promise;
+    const total = doc.numPages;
+    const images = [];
+
+    for(let i = 1; i <= total; i++){
+      const page = await doc.getPage(i);
+      const viewport = page.getViewport({ scale: 2.2 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+      images.push(canvas.toDataURL('image/jpeg', 0.86));
+      progBar.style.width = Math.round((i / total) * 100) + '%';
+      loadingEl.textContent = 'Preparando el libro… ' + Math.round((i / total) * 100) + '%';
+    }
+
+    const baseWidth = 480;
+    const pageFlip = new St.PageFlip(flipbookEl, {
+      width: baseWidth,
+      height: Math.round(baseWidth * PAGE_RATIO),
+      size: 'stretch',
+      minWidth: 260,
+      maxWidth: 700,
+      minHeight: Math.round(260 * PAGE_RATIO),
+      maxHeight: Math.round(700 * PAGE_RATIO),
+      showCover: true,
+      maxShadowOpacity: 0.5,
+      mobileScrollSupport: false,
+      usePortrait: true
+    });
+
+    pageFlip.loadFromImages(images);
+
+    function updateCounter(){
+      counterEl.textContent = (pageFlip.getCurrentPageIndex() + 1) + ' / ' + total;
+      prevBtn.disabled = pageFlip.getCurrentPageIndex() === 0;
+      nextBtn.disabled = pageFlip.getCurrentPageIndex() >= total - 1;
+    }
+    pageFlip.on('flip', updateCounter);
+    updateCounter();
+
+    prevBtn.addEventListener('click', () => pageFlip.flipPrev());
+    nextBtn.addEventListener('click', () => pageFlip.flipNext());
+    document.addEventListener('keydown', (e) => {
+      if(!stage.classList.contains('is-hidden')){
+        if(e.key === 'ArrowLeft') pageFlip.flipPrev();
+        if(e.key === 'ArrowRight') pageFlip.flipNext();
+      }
+    });
+
+    loadingEl.classList.add('is-hidden');
+    progWrap.classList.add('is-hidden');
+    stage.classList.remove('is-hidden');
+    bar.classList.remove('is-hidden');
+  }
+
+  window.addEventListener('load', () => {
+    buildFlipbook().catch((err) => {
+      console.error('No se pudo montar el libro interactivo:', err);
+      showFallback();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
