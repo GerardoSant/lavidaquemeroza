@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//La vida que me roza//Presentacion//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:presentacion-la-vida-que-me-roza-20261125@lavidaquemeroza
+DTSTAMP:20261114T120000Z
+DTSTART:20261125T193000Z
+DTEND:20261125T210000Z
+SUMMARY:Presentación de «La vida que me roza»\, de Ángeles Franco
+LOCATION:El Real de Triana\, C/ Remedios 8\, 35002 Las Palmas de Gran Canaria
+DESCRIPTION:Presentación del poemario de Ángeles Franco. Presenta: Conchi Miranda. Prólogo: Ina Molina. Posfacio: Juan Antonio Marrero. Ilustraciones: Charly Gómez Rodríguez.
+END:VEVENT
+END:VCALENDAR
