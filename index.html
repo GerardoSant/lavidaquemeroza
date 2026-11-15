@@ -487,6 +487,11 @@
     width:100%; aspect-ratio: 4/5; object-fit:cover;
     border:1px solid var(--line); display:block;
   }
+  .carousel-video-frame{
+    position:relative; width:100%; aspect-ratio:4/5;
+    background:var(--ink); border:1px solid var(--line);
+  }
+  .carousel-video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
   .carousel-slide figcaption{
     margin-top:12px; font-family:var(--utility); font-size:13px;
     line-height:1.5; color:var(--ink-soft);
@@ -1110,6 +1115,12 @@
               <img src="assets/images/noche.jpeg" alt="Vista nocturna de un puente iluminado sobre un río">
               <figcaption>Una noche en donde la música  del momento se convierte en regazo..</figcaption>
             </figure>
+            <figure class="carousel-slide carousel-video">
+              <div class="carousel-video-frame">
+                <iframe src="https://www.youtube-nocookie.com/embed/po2TbpGgMqw" title="Detrás del libro — vídeo" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+              <figcaption>Un vídeo para conocer un poco más del proceso del libro.</figcaption>
+            </figure>
           </div>
           <button class="carousel-nav next" id="carNext" aria-label="Imagen siguiente">›</button>
         </div>
@@ -1382,7 +1393,7 @@
   }
 
   // Detrás del libro: cada imagen usa su propio pie de foto
-  const illustrationSlides = Array.from(document.querySelectorAll('#illustrationsCarousel .carousel-slide'));
+  const illustrationSlides = Array.from(document.querySelectorAll('#illustrationsCarousel .carousel-slide')).filter(s => s.querySelector('img'));
   wireGallery(
     illustrationSlides.map(s => s.querySelector('img')).filter(Boolean),
     () => illustrationSlides.map(s => {
